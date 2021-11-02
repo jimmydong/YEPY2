@@ -1,0 +1,4 @@
+Tue, 02 Jan 2018 17:01:01 app.py[line:91] DEBUG serving at port: 8089
+Tue, 02 Jan 2018 17:01:15 app.py[line:54] DEBUG {'c': ['1'], 'x': ['kakakaka中文']}
+121.69.30.230 - - [02/Jan/2018 17:01:15] "GET /?c=1&x=kakakaka%E4%B8%AD%E6%96%87 HTTP/1.1" 200 -
+Tue, 02 Jan 2018 17:01:18 app.py[line:54] DEBUG {'c': ['1'], 'x': ['kakakaka中文']}

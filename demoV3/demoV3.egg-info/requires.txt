@@ -1,0 +1,13 @@
+logging
+python-memcached
+pymongo
+yapf
+SQLAlchemy
+MySQLdb
+flask
+flask-debugtoolbar
+flask-uploads
+flask-cache
+flask-sqlalchemy
+flask_pymongo
+future

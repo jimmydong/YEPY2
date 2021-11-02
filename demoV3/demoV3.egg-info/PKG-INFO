@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: demoV3
+Version: 0.1
+Summary: 关于本软件的简单描述
+Home-page: https://github.com/jimmydong/yepy
+Author: JimmyDong
+Author-email: jimmy.dong@gmail.com
+License: MIT
+Description: 这里是详细的描述和使用介绍
+Keywords: YEPY,简易框架,Server
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Utilities

@@ -1,0 +1,127 @@
+test logger
+test logger
+other
+test logger
+other
+test logger
+3
+test logger
+3
+test logger
+warning
+hehe
+hasdhsdf
+sdfasdf
+sdfasdfdddddsssssss
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+3
+test logger
+warning
+warning
+warning
+warning
+warning
+3
+test logger
+warning
+Exception on /demo/ [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1610, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1831, in preprocess_request
+    rv = func()
+  File "app.py", line 64, in before_request
+    if app.config['Debug'] or 'FirePHP' in request.headers.get('User-Agent') or request.values.get('debug', False) != False:
+KeyError: 'Debug'
+Exception on /demo/ [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1610, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1831, in preprocess_request
+    rv = func()
+  File "app.py", line 64, in before_request
+    if app.config['Debug']:
+KeyError: 'Debug'
+Exception on /demo/ [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1982, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1614, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1517, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.6/site-packages/flask/_compat.py", line 33, in reraise
+    raise value
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1610, in full_dispatch_request
+    rv = self.preprocess_request()
+  File "/usr/local/lib/python3.6/site-packages/flask/app.py", line 1831, in preprocess_request
+    rv = func()
+  File "app.py", line 64, in before_request
+    if current_app.config['Debug']:
+KeyError: 'Debug'
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning
+warning

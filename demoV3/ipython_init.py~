@@ -1,0 +1,12 @@
+# IPython log file
+
+import sys
+sys.path.append('../')
+import bucketV3 as bucket
+bucket.G
+bucket.G.get('test')
+get_ipython().run_line_magic('logstart', 'ipython_init.py')
+import sys
+sys.path.append('../')
+import bucketV3 as bucket
+get_ipython().run_line_magic('logstop', '')
