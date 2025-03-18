@@ -1,33 +1,40 @@
-# YEPY 快速开发框架项目搭建演示
+# wedata实现IEGG非标kafka数据源schema evaluation
 
-本示例适用于 Python3 以上版本。 Python2.7版本请使用 demoV1 项目
+### install
 
-本示例适用于较复杂的Web应用。如果仅需简单web页面展示运行信息，建议使用 demoV2 
+    pip3 install redis
+    pip3 install flask_debugtoolbar
+    pip3 install flask_uploads
+    pip3 install wxpy
+    pip3 install setproctitle
+    pip3 install tornado
+    mkdir log
 
-## 开发指导
+## database
+    pip3 install sqlite_web
+    sqlite_web 
 
-+ 部署YEPY代码
-+ 复制demoV3到任意项目目录
-+ 安装依赖 python3 setup.py install
-+ 修改config.inc (留意：YEPY的路径)
-+ 开发contgroller
-+ 开发templates
-+ 将新的controller注册到config.inc的blueprint
-+ 运行 python3 app.py debug 进行调试
-+ 运行 /bin/sh start.sh 正式服务
+### patch
 
-## config.inc 注意事项
+/Users/laodong/Library/Python/3.9/lib/python/site-packages/flask_uploads.py (具体路径看报错提示)
 
-+ 名称、端口
-+ Cache配置（或关闭）
+Change
 
-## job.py 
+    from werkzeug import secure_filename,FileStorage
 
-运行任务线程。可通过 bucket.G 与主程序通讯
+to
 
-【注意】 只能在单进程模式中唯一。如果使用gevent，每个进程中会有一个job。
+    from werkzeug.utils import secure_filename
+    from werkzeug.datastructures import  FileStorage
 
-## 高性能模式
+### run
 
-wait
+    python3 app.py
+    #or
+    sh start.sh
+
+
+### deployment
+
+    http://http://gdit-sre-console.deltaverse-intl.com:27788
 

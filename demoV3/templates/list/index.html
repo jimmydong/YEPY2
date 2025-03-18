@@ -1,0 +1,46 @@
+{% extends 'template_base_bootstrap.html' %}
+
+{% block content %}
+<h4>查看历史更新记录(仅显示最近100条) redis_key = [BID]:[STRUCT]</h4>
+
+{% if out.alert %}
+<p class="bg-danger">{{out.alert}}</p>
+{% endif %}
+
+{% if out.info %}
+<p class="bg-success">{{out.info}}</p>
+{% endif %}
+
+{% if out.data %}
+<pre>{{out.data}}</pre>
+{% endif %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>时间</th>
+            <th>用户</th>
+            <th>BID</th>
+            <th>STRUCT</th>
+            <th>文件名</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for row in out.rows %}
+        <tr>
+            <td>{{ row.id }}</td>
+            <td>{{ row.datetime }}</td>
+            <td>{{ row.name }}</td>
+            <td>{{ row.business_id }}</td>
+            <td>{{ row.structure }}</td>
+            <td>{{ row.xml_filename }}</td>
+            <td><a href="/list/redis?redis_key={{ row.redis_key }}">查看Redis</a> <a href="/list/download?id={{ row.id }}">下载XML</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</table>
+
+{% endblock %}

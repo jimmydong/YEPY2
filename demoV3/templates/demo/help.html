@@ -1,28 +1,23 @@
 {% extends 'template_base_bootstrap.html' %}
 
-{% block title %} DEMO {% endblock %}
-
 {% block content %}
-<h4>这是一个参数处理的演示</h4>
+<h4>IEEE WEDATA SCHEMA UPLOAD SYSTEM</h4>
 {% if out.alert %}
-<p class="bg-danger">传入了alert参数：{{out.alert}}</p>
+<p class="bg-danger">out.alert：{{out.alert}}</p>
 {% else %}
-<p class="bg-success">没有参数</p>
+<p class="bg-success">update: v0.1b 2025.03.15</p>
 {% endif %}
 
 <pre>
-YEPY 简易PYTHON开发框架演示 V3
+操作指南：
 
-演示内容：
+1，首页 - 登录
+2，列表页 - 查看历史更新记录
+    2.1 查看Redis - 查看上传到Redis的内容
+    2.2 下载XML - 下载原始XML文件
+3，上传页 - 上传更新
 
-1，controller / templete 结构
-2，表单处理
-3，参数处理
-4，后台任务
-5，全局Bucket使用
-6，Memcache操作
-7，Debug使用方法
-
+注意： 仅供内部人员使用，操作请谨慎！
 </pre>
 
 {% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'template_base_bootstrap.html' %}
+
+{% block content %}
+<h4>更新至redis，请谨慎填写</h4>
+
+{% if out.alert %}
+<p class="bg-danger">{{out.alert}}</p>
+{% endif %}
+
+{% if out.info %}
+<p class="bg-success">{{out.info}}</p>
+{% endif %}
+
+{% if out.data %}
+<pre>{{out.data}}</pre>
+{% endif %}
+
+<form name="更新XML" action="submit" method="post" enctype ="multipart/form-data">
+    <div class="mb-3">
+        <label class="form-label">BID</label>
+        <input type="text" class="form-control" name="bid">
+        <div class="form-text"></div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">接口名</label>
+        <input type="text" class="form-control" name="table">
+        <div class="form-text">[说明]&lt;struct name='xxxxx'&gt </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">XML文件</label>
+        <input type="file" class="form-control" name="upload_file">
+    </div>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>        
+    </div>
+</form>
+{% endblock %}

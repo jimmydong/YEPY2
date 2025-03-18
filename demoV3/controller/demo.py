@@ -29,6 +29,8 @@ def main(action):
     bucket._controller = controller
     bucket._action = action
     out = init()
+    out['title'] = 'HELP'
+    out['headline'] = '操作指南（待补充）'
     
     ############################################################################
     # add your code here
@@ -69,6 +71,8 @@ def main(action):
             bucket.debug.log('debug:out', out)
 
     elif action == 'help':
+        bucket.debug.log('test', 'hello')
+        bucket.debug.show()
         out['alert'] = request.args.get('alert')
         
     else: 

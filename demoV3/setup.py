@@ -30,7 +30,7 @@ setup(
         "flask-cache",
         'future',
     ],
-    url='https://github.com/jimmydong/yepy',
+    url='https://github.com/jimmydong/YEPY2',
     license='MIT',
     author='JimmyDong',
     author_email='jimmy.dong@gmail.com',

@@ -2,12 +2,11 @@
 """ 
 工作线程（后台工作部分）
 """
-import bucketV3  # 加载全局变量
+import bucket as bucket  # 加载全局变量
 import threading
 import time
 import inspect
 import ctypes
-from job import myJob
 
 
 def _async_raise(tid, exctype):

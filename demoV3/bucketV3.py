@@ -1,40 +1,47 @@
 # -*- coding: utf-8 -*-
-from collections import MutableMapping
-import inspect
-def _ipython(local, banner):
-    from IPython.terminal.embed import InteractiveShellEmbed
-    from IPython.terminal.ipapp import load_default_config
+"""
+YEPY 全局变量
+"""
 
-    InteractiveShellEmbed.clear_instance()
-    shell = InteractiveShellEmbed.instance(
-        banner1=banner,
-        user_ns=local,
-        config=load_default_config()
-    )
-    shell()
-    
-# class GlobalDict(DictMixin):
-#     def __init__(self, dict=None, **kwargs):
-#         self.data = {}
-#         if dict is not None:
-#             self.update(dict)
-#         if len(**kwargs):
-#             self.update(kwargs)
-#     @abstractmethod
-#     def __getitem__(self, key):
-#         retrun self.data[id]
-#     
-#     @abstractmethod
-#     def __setitem__(self, key, value):
-#         self.data[id] = value
-#     
-#     @abstractmethod
-#     def __delitem__(self, key):
-#         del self.data[id]
-#     
-#     def keys(self):
-#         return self.data.keys()
+#全局变量
+_controller = ''
+_action = ''
 
+try:
+    from job import myJob
+    from workerV3 import Worker
+    worker = Worker()
+except ImportError:
+    pass
+
+try:
+    from yepy import debugV3
+    debug = debugV3.Debug()
+except ImportError:
+    debug = None
+    pass
+
+try:
+    from flask_caching import Cache
+    cache = Cache() 
+    cache2 = Cache()
+except ImportError:
+    cache = None
+    cache2 = None
+    pass 
+
+try:
+    from flask_sqlalchemy import SQLAlchemy
+    db = SQLAlchemy()
+    db2 = SQLAlchemy()
+except ImportError:
+    db = None
+    db2 = None
+
+try:
+    from collections import MutableMapping
+except ImportError:
+    from collections.abc import MutableMapping
 
 class ConfigG(dict):
     def __init__(self, *args, **kwds):
@@ -57,12 +64,15 @@ class ConfigG(dict):
             root[:] = [root, root, None]
             self.__map = {}
         self.__update(*args, **kwds)
-    
+
     def __getattr__(self,name):
         try:
             return dict.__getitem__(self, name)
         except:
-            raise AttributeError()
+            if name == '_ConfigG__root':
+                raise AttributeError()
+            else:
+                return None
 
     def __setattr__(self,name,value):
         if name.startswith('_ConfigG__'):
@@ -213,4 +223,3 @@ class ConfigG(dict):
 
 G = ConfigG()
 
-_ipython(None, '')

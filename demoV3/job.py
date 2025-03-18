@@ -20,5 +20,5 @@ def myJob():
         else:
             with open('heartbit.log', 'w') as f:
                 f.write(time.strftime("%Y-%m-%d %H:%M:%S"))            
-        time.sleep(3)
+        time.sleep(60)
     pass

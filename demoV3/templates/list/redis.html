@@ -1,7 +1,7 @@
 {% extends 'template_base_bootstrap.html' %}
 
 {% block content %}
-<h4>请登录系统</h4>
+<h4>查看Redis数据</h4>
 
 {% if out.alert %}
 <p class="bg-danger">{{out.alert}}</p>
@@ -11,11 +11,10 @@
 <p class="bg-success">{{out.info}}</p>
 {% endif %}
 
-{{ out.html|safe }}
+{% if out.data %}
+<pre style="word-break:break-all;">{{ out.data|e }}</pre>
+{% endif %}
 
-<pre>
-{{out.data}}
-</pre>
-<hr>
-<small>欢迎使用Hamster，账户相关问题，请联系@laodong</small>
+</table>
+
 {% endblock %}

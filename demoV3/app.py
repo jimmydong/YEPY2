@@ -13,12 +13,13 @@ from werkzeug.utils import import_string
 import logging
 from logging.handlers import RotatingFileHandler
 import time
-import cgi
+import html
 import os
 import setproctitle
 from job import myJob
 from yepy.console import embed
-
+import sys
+sys.path.append(os.path.dirname(__file__) + '/lib')
 
 #进程名称
 setproctitle.setproctitle(setproctitle.getproctitle() + ' ' + config.Config.APP_NAME + ':' + str(config.Config.APP_PORT))
@@ -40,6 +41,7 @@ def createApp():
 app = createApp()
 
 #全局变量初始化
+bucket.G.root_path = os.path.dirname(__file__) #当前文件目录
 bucket.G.begin_time = time.strftime("%Y-%m-%d %H:%M:%S")
 bucket.G.counter = 0
 bucket.G.counter_success = 0
@@ -54,9 +56,8 @@ if app.config.get('LOG_FILE'):
     file_handler.setLevel(logging.DEBUG)
     app.logger.addHandler(file_handler)
 photos = UploadSet(name='photos',extensions=('jpg','gif','png'))
-files = UploadSet(name='files',extensions=('txt','rar','zip')) 
+files = UploadSet(name='files',extensions=('xml','txt','rar','zip')) 
 configure_uploads(app,(photos,files))
-
 
 # Framework
 @app.before_request
@@ -97,7 +98,7 @@ def uploadPhoto():
 @app.errorhandler(404)
 def not_found(error):
   out = repr(app.url_map)
-  response = make_response('页面未找到 page not found <br/><pre>' + cgi.escape(out) + '</pre>', 404)
+  response = make_response('页面未找到 page not found <br/><pre>' + html.escape(out) + '</pre>', 404)
   return response
 
 #临时测试

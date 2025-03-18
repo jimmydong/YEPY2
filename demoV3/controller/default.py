@@ -8,6 +8,8 @@ by jimmy.dong@gmail.com 2016.1.4
 from flask import Blueprint, render_template, abort, request, current_app, make_response
 from . import *
 import bucketV3 as bucket
+import sqlite_db
+import func_pack
 
 controller = 'index'
 blueprint = Blueprint(controller, __name__)
@@ -24,25 +26,32 @@ def main(action):
     bucket._controller = controller
     bucket._action = action
     out = init()  # @UndefinedVariable
-    
+    out['title'] = 'IEEE WEDATA SCHEMA UPLOAD SYSTEM'
+    out['headline'] = 'IEEE WEDATA SCHEMA UPLOAD SYSTEM'
+
     #add your code here
     if request.method == 'POST':
+        name = request.form['name']
         password = request.form['password']
     else:
         password = ''
-    if password == 'yisheng@2018':
-        out.info = "<pre> ----==== Udf to Mongo by jimmy.dong@gmail.com ====---- \n 开始运行于： %s \n 累积执行： %d  \n 运行成功： %d </pre>" % (bucket.G.begin_time, bucket.G.counter, bucket.G.counter_success)
-        out.data = " ----==== current_app.config ====----  \n"
-        if action == 'index':
-            for k in current_app.config:
-                out.data = out.data + " %s  -   %s \n" % (k,current_app.config[k])
-            pass
-        else: 
-            out.data = " --- error Can't find the action."
-            pass 
-    else:
-        out.info = "<form action=/ method=post><input type=text name=password size=20><input type=submit value='ok'></form>"
-        out.data = "请输入密码 (提示： y******@***8)"
+    if password:
+        user = sqlite_db.get_user(name, password)
+        if user is None:
+            out.alert = "用户名/密码不正确"
+        else:
+            resp = redirect('/upload/', '验证通过')
+            resp.set_cookie("HAMSTER", func_pack.encode_user_cookie(name, user['id']))
+            return resp
+            
+    out.html = '''
+    <form action=/ method=post>
+    用户名：<input type=text name=name size=20>
+    密码：<input type=password name=password size=20>
+    <input type=submit value='ok'>
+    </form>
+    '''
+    out.data = "请输入用户名和密码 (提示：本系统的用户名和密码)"
         
     #finish
     return show(out)  # @UndefinedVariable

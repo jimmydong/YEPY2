@@ -12,11 +12,9 @@ with codecs.open('__init__.py', encoding='utf-8') as fp:
     app_version = re.search(r"__version__\s*=\s*'([\w\-.]+)'", content).group(1)
     app_name = re.search(r"__title__\s*=\s*'([\w\-.]+)'", content).group(1)
 
-_yepy_application_version = '1.3b'
-_yepy_path = '../'
-sys.path.append(_yepy_path) #如果yepy不在当前目录
+_yepy_application_version = '1.4b'
 
-is_debug = False
+is_debug = False # 启动时加debug参数: python3 app.py debug
 if len(sys.argv) > 1:
     if sys.argv[1] == 'debug':
         is_debug = True
@@ -26,7 +24,7 @@ is_firedebug = False
 class Config(object):
     APP_NAME = app_name
     APP_HOST = '0.0.0.0'
-    APP_PORT = 8099
+    APP_PORT = 27788
     DEBUG = False
     USE_RELOADER = False                # 禁止代码自动更新，防止运行多次
     TESTING = False
@@ -34,7 +32,7 @@ class Config(object):
     DEBUG_TB_INTERCEPT_REDIRECTS = False
     SESSION_COOKIE_NAME = "YEPY_SESSION"
     
-    CACHE_ENABLE = True
+    CACHE_ENABLE = False
     CACHE_KEY_PREFIX = "YEPY_" 
     CACHE_MEMCACHED_SERVERS = ["127.0.0.1:11211"]
     
@@ -42,6 +40,7 @@ class Config(object):
     UPLOADS_DEFAULT_URL = "/upload"
     #UPLOADED_FILES_ALLOW = []
     #UPLOADED_FILES_DENY = []
+    MAX_CONTENT_LENGTH = 256 * 1024 * 1024
     
     LOG_FILE = 'app.log'
     LOG_SIZE = 10000
@@ -58,5 +57,7 @@ class ProductionConfig(Config):
 # 应用模块
 blueprints = [
               'controller.default:blueprint',
-              'controller.demo:blueprint'
+              'controller.demo:blueprint',
+              'controller.upload:blueprint',
+              'controller.list:blueprint'
               ]
