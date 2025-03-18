@@ -5,13 +5,10 @@ by jimmy.dong@gmail.com 2016.1.4
 
 由FirePHP改写，符合FirePHP规则
 """
-from yepy import firephp
+import firephp
 import sys
 import traceback
 import time
-from yepy.hack_flask_toolbar import MyRecordHandler
-from flask_debugtoolbar.panels import logger
-logger.handler = MyRecordHandler()
 
 class Debug:
     __debug_level = 'info'   # 三个调试等级['none', 'stat', 'info']
@@ -32,7 +29,7 @@ class Debug:
     def reload(self):
         self.time_table = []
         self.time_table.append(["Description","Time","Caller"])
-        self.time_begin = time.process_time()
+        self.time_begin = time.clock()
         self.log_table = []
         self.log_table.append(["Label","Results","Caller"])
         self.firephp.reload()
@@ -42,18 +39,12 @@ class Debug:
             tmp = value
             code = "self.%s = tmp" % key
             exec(code)
-    
-    # 开启
+        
     def start(self):
         self.__open = True
     
-    # 关闭
     def stop(self):
         self.__open = False
-    
-    # 是否开启
-    def opened(self):
-        return self.__open
     
     def time(self, label='', caller=''):
         if not self.__open:
@@ -66,7 +57,7 @@ class Debug:
             except:
                 f = sys.exc_info()[2].tb_frame.f_back
                 caller = "%s %s:%s" % (f.f_code.co_filename, f.f_code.co_name, f.f_lineno)
-        self.time_table.append([label,"%2.6f" % (time.process_time()-self.time_begin),caller])
+        self.time_table.append([label,"%2.6f" % (time.clock()-self.time_begin),caller])
     
     def log(self, label, result='', caller=''):
         if not self.__open:
@@ -81,11 +72,7 @@ class Debug:
             except:
                 f = sys.exc_info()[2].tb_frame.f_back
                 caller = "%s %s:%s" % (f.f_code.co_filename, f.f_code.co_name, f.f_lineno)
-        # firephp
         self.log_table.append([label, result, caller])
-        # flask-debug-toolbar
-        logger.handler.add_record(label, time.time(), result, f.f_code.co_filename+' '+f.f_code.co_name, f.f_lineno)
-        
     
     def flog(self):
         pass
@@ -100,7 +87,7 @@ class Debug:
         pass
     
     def show(self):
-        self.firephp.fb(self.time_table, title="This Page Spend Times %f" % (time.process_time()-self.time_begin), skip=2)
+        self.firephp.fb(self.time_table, title="This Page Spend Times %f" % (time.clock()-self.time_begin), skip=2)
         self.firephp.fb(self.log_table, title='Custom Log Object', skip=1)
         return self.firephp.headers
     
